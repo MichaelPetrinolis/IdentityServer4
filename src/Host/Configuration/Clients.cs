@@ -1,4 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
@@ -307,7 +307,76 @@ namespace Host.Configuration
                         IdentityServerConstants.StandardScopes.Email,
                         "api1", "api2.read_only", "api2.full_access"
                     }
-                }
+                },
+                new Client
+                {
+                    ClientId = "tenant1",
+                    ClientName = "Tenant 1",
+                    ClientUri = "http://localhost:56336/tenant1",
+
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =  {
+                        "http://localhost:56336/tenant1/signin-tenant1"
+                    },
+                    FrontChannelLogoutUri = "http://localhost:56336/tenant1/signout-tenant1",
+                    PostLogoutRedirectUris = { "http://localhost:56336/tenant1/signout-callback-tenant1" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    }
+                },
+
+                new Client
+                {
+                    ClientId = "tenant2",
+                    ClientName = "Tenant 2",
+                    ClientUri = "http://localhost:56336/tenant2",
+
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =  {
+                        "http://localhost:56336/tenant2/signin-tenant2"
+                    },
+                    FrontChannelLogoutUri = "http://localhost:56336/tenant2/signout-tenant2",
+                    PostLogoutRedirectUris = { "http://localhost:56336/tenant2/signout-callback-tenant2" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    }
+                },
+
+                new Client
+                {
+                    ClientId = "tenant3",
+                    ClientName = "Tenant 3",
+                    ClientUri = "http://localhost:56336/tenant3",
+
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =  {
+                        "http://localhost:56336/tenant2/signin-tenant3"
+                    },
+                    FrontChannelLogoutUri = "http://localhost:56336/tenant3/signout-tenant3",
+                    PostLogoutRedirectUris = { "http://localhost:56336/tenant3/signout-callback-tenant3" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    }
+                },
+
             };
         }
     }

@@ -38,7 +38,7 @@ namespace IdentityServer4.Quickstart.UI
                     new Claim("location", "somewhere")
                 }
             },
-            new TestUser{SubjectId = "88421443", Username = "admin", Password = "admin123!@#Qq",
+            new TestUser{SubjectId = "88421443", Username = "admin", Password = "123!@#Qq",
                 Claims =
                 {
                     new Claim(JwtClaimTypes.Name, "Admin"),
