@@ -310,6 +310,28 @@ namespace Host.Configuration
                 },
                 new Client
                 {
+                    ClientId = "orchard",
+                    ClientName = "Orchard Dev",
+                    ClientUri = "http://localhost:7000",
+
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =  {
+                        "http://localhost:7000/signin"
+                    },
+                    FrontChannelLogoutUri = "http://localhost:7000/signout",
+                    PostLogoutRedirectUris = { "http://localhost:7000/signout-callback" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    }
+                },
+                new Client
+                {
                     ClientId = "tenant1",
                     ClientName = "Tenant 1",
                     ClientUri = "http://localhost:56336/tenant1",
