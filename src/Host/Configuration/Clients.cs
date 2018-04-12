@@ -318,10 +318,10 @@ namespace Host.Configuration
                     AllowAccessTokensViaBrowser = true,
 
                     RedirectUris =  {
-                        "http://localhost:7000/signin"
+                        "http://localhost:7000/signin-oidc"
                     },
-                    FrontChannelLogoutUri = "http://localhost:7000/signout",
-                    PostLogoutRedirectUris = { "http://localhost:7000/signout-callback" },
+                    FrontChannelLogoutUri = "http://localhost:7000/logout",
+                    PostLogoutRedirectUris = { "http://localhost:7000/signout-callback-oidc" },
 
                     AllowedScopes =
                     {
@@ -330,6 +330,37 @@ namespace Host.Configuration
                         IdentityServerConstants.StandardScopes.Email
                     }
                 },
+
+                new Client
+                {
+                    ClientId = "orchard.hybrid",
+                    ClientName = "Orchard Dev (Hybrid)",
+                    ClientUri = "http://localhost:7000",
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    AllowAccessTokensViaBrowser = false,
+
+                    
+                    RedirectUris = { "http://localhost:7000/signin-oidc" },
+                    BackChannelLogoutUri = "http://localhost:7000/signout-oidc",
+                    PostLogoutRedirectUris = { "http://localhost:7000/signout-callback-oidc" },
+
+                    AllowOfflineAccess = true,
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email
+                    }
+                },
+
+
                 new Client
                 {
                     ClientId = "tenant1",
